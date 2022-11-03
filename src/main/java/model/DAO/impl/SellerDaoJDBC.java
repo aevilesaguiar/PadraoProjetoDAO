@@ -62,17 +62,9 @@ public class SellerDaoJDBC implements SellerDAO {
 
             if(rs.next()){ //se a minha consulta não veio nenhum registro essa minha consulta vai dar falso , ele pula o if e eu retorno nulo
 
-                Department dep = new Department();
-                dep.setId(rs.getInt("Id"));
-                dep.setName(rs.getString("Name"));
+                Department dep = instantiateDepartment(rs);
 
-                Seller obj = new Seller();
-                obj.setId(rs.getInt("Id"));
-                obj.setName(rs.getString("Name"));
-                obj.setEmail(rs.getString("Email"));
-                obj.setBirthDate(rs.getDate("BirthDate"));
-                obj.setBaseSalary(rs.getDouble("BaseSalary"));
-                obj.setDepartment(dep);//por que foi o objeto inteiro devido a asociação
+                Seller obj = instantiateSeller(rs,dep);
 
                 return obj;
 
@@ -89,6 +81,28 @@ public class SellerDaoJDBC implements SellerDAO {
 
 
     }
+
+    private Seller instantiateSeller(ResultSet rs, Department dep)throws SQLException {
+      Seller obj=  new Seller();
+        obj.setId(rs.getInt("Id"));
+        obj.setName(rs.getString("Name"));
+        obj.setEmail(rs.getString("Email"));
+        obj.setBirthDate(rs.getDate("BirthDate"));
+        obj.setBaseSalary(rs.getDouble("BaseSalary"));
+        obj.setDepartment(dep);//por que foi o objeto inteiro devido a asociação
+
+        return obj;
+    }
+
+    private Department instantiateDepartment(ResultSet rs) throws SQLException{
+       Department dep =  new Department();
+        dep.setId(rs.getInt("Id"));
+        dep.setName(rs.getString("Name"));
+
+        return dep;
+    }
+
+
 
     @Override
     public List<Seller> findAll() {

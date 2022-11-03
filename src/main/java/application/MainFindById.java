@@ -13,6 +13,8 @@ public class MainFindById {
         //Instanciando DAO - o meu programa não conehce a implementação, só a interface - é uma forma de fazer Injeção de dependencia sem explicitar a implementação
         SellerDAO sellerDAO = DaoFactory.createSellerDao();
 
+        System.out.println("=== TEST 1: seller findById === ");
+
         Seller seller = sellerDAO.findById(4);
 
         System.out.println(seller);
