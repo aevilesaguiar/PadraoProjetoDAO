@@ -117,3 +117,12 @@ SQL Query:
         ON seller.DepartmentId = department.Id
         ORDER BY Name
 
+
+## insert implementation
+
+
+SQL Query:
+INSERT INTO seller
+(Name, Email, BirthDate, BaseSalary, DepartmentId)
+VALUES
+(?, ?, ?, ?, ?)
