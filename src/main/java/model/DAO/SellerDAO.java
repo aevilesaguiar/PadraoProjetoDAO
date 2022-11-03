@@ -14,4 +14,6 @@ public interface SellerDAO {
     //operaçao responsável por pegar o id do parametro e consultar no BD o objeto com esse ID se existir vai retornar, senão existir retorna nulo
     Seller findById(Integer id);
     List<Seller> findAll();
+    List<Seller> findByDepartment(Department department);
+
 }

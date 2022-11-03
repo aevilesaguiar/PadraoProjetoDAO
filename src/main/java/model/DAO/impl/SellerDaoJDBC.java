@@ -10,7 +10,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SellerDaoJDBC implements SellerDAO {
 
@@ -107,5 +110,67 @@ public class SellerDaoJDBC implements SellerDAO {
     @Override
     public List<Seller> findAll() {
         return null;
+    }
+
+    @Override
+    public List<Seller> findByDepartment(Department department) {
+
+        PreparedStatement st = null;
+
+        ResultSet rs = null;
+
+        try{
+            st = conn.prepareStatement(
+                    "SELECT seller.*,department.Name as DepName "
+                    +"FROM seller INNER JOIN department "
+                    +"ON seller.DepartmentId = department.Id "
+                    +"WHERE DepartmentId = ? "
+                    +"ORDER BY Name"
+
+            );
+            //configurar a interogação
+            st.setInt(1,department.getId());
+
+            rs=st.executeQuery(); //executo a query
+
+            List<Seller> list = new ArrayList<>();
+
+            //criado um map vazio e eu vou guardar qualquer departamento que eu instanciar , toda vez que ele passar  no while eu testo se o departamento já existe
+            Map<Integer, Department> map = new HashMap<>();
+
+
+            //ao invés de if será while para ele pescorrer o result set, por que diferente do outro aqui podemos ter 0 ou diversos valorses
+            while(rs.next()){ //se a minha consulta não veio nenhum registro essa minha consulta vai dar falso , ele pula o if e eu retorno nulo
+
+                //resumindo se o departamento já existir o meu map.get vai pegar ele, o if vai dar falso e eu vou reaproveitar o departamento que já existia
+                //agora se o departamento não existir o map.get vai dar null para a vaiavel department1 o if vai dar verdadeiro e ele vai instanciar e salvar o departamento no map
+
+                Department department1 = map.get(rs.getInt("DepartmentId"));//tento  buscar um map que possui esse id se for nulo eu instancio o departamento
+
+                if(department1==null){
+
+                    department1=instantiateDepartment(rs);
+
+                    //salvar o departamento no map para que dá proxima vez eu possa verificar aqui e ver que ele já existe
+                    map.put(rs.getInt("DepartmentId"),department1); //salvo o que estiver na variavel department1
+                }
+
+                Seller obj = instantiateSeller(rs,department1);
+
+                list.add(obj);
+
+            }
+            return list;
+
+        }catch (SQLException e){
+            throw new DbException(e.getMessage());
+        }finally {
+            DB.closeStatment(st);
+            DB.closeResultSet(rs);
+        }
+
+
+
+
     }
 }

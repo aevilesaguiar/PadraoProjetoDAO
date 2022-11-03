@@ -5,9 +5,9 @@ import model.DAO.SellerDAO;
 import model.entities.Department;
 import model.entities.Seller;
 
-import java.util.Date;
+import java.util.List;
 
-public class MainFindById {
+public class MainTestes {
     public static void main(String[] args) {
 
         //Instanciando DAO - o meu programa não conehce a implementação, só a interface - é uma forma de fazer Injeção de dependencia sem explicitar a implementação
@@ -18,6 +18,17 @@ public class MainFindById {
         Seller seller = sellerDAO.findById(4);
 
         System.out.println(seller);
+
+        System.out.println("\n=== TEST 2: seller findByDepartment === ");
+
+        Department department = new Department(2, null);
+
+        List<Seller> list = sellerDAO.findByDepartment(department);
+
+        for (Seller obj:list
+             ) {
+            System.out.println(obj);
+        }
 
 
     }
