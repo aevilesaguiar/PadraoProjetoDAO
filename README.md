@@ -106,3 +106,14 @@ WHERE DepartmentId = ?
 ORDER BY Name
 
 ![](.README_images/d720c039.png)
+
+
+## findAll implementation
+
+SQL Query:
+
+        SELECT seller.*,department.Name as DepName
+        FROM seller INNER JOIN department
+        ON seller.DepartmentId = department.Id
+        ORDER BY Name
+
