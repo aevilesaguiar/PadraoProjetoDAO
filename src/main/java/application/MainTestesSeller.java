@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-public class MainTestes {
+public class MainTestesSeller {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
