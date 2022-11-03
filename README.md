@@ -47,3 +47,12 @@ dados baseada em Java usada para conectividade de banco de dados Java. Faz parte
 da Oracle
 
 ![](.README_images/2e9c1ee9.png)
+
+
+## PROJETO
+
+![](.README_images/11276d95.png)
+
+- Implements Serializable é para os nossos objetos serem transformados em sequencias de bytes. Em java se quisermos que nosso
+objeto seja gravado em arquivo, seja trafegado em rede temos que implementar o Serializable
+
