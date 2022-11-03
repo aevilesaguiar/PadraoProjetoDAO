@@ -7,9 +7,12 @@ import model.entities.Seller;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 
 public class MainTestes {
     public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
 
         //Instanciando DAO - o meu programa não conehce a implementação, só a interface - é uma forma de fazer Injeção de dependencia sem explicitar a implementação
         SellerDAO sellerDAO = DaoFactory.createSellerDao();
@@ -52,5 +55,14 @@ public class MainTestes {
         seller.setName("Martha Waine");
         sellerDAO.update(seller);
         System.out.println("Update Completed! ");
+
+        System.out.println("\n=== TEST 6: seller Deelete === ");
+        System.out.println("Enter id for delete test: ");
+        int id =sc.nextInt();
+        sellerDAO.deleteByid(id);
+        System.out.println("Delete completed");
+
+        sc.close();
+
     }
 }

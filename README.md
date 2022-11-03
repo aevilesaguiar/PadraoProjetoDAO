@@ -135,3 +135,10 @@ SQL Query:
         UPDATE seller
         SET Name = ?, Email = ?, BirthDate = ?, BaseSalary = ?, DepartmentId = ?
         WHERE Id = ?
+
+
+## delete implementation
+
+SQL Query:
+DELETE FROM seller
+WHERE Id = 
