@@ -40,7 +40,7 @@ public class MainTestes {
             System.out.println(obj);
         }
 
-        System.out.println("\n=== TEST 4: seller Insert === ");
+        System.out.println("\n=== TEST 4: seller Insert ==== ");
 
         Seller newSeller = new Seller(null, "Greg", "greg@mail.com", new Date(),4000.00,department);
         sellerDAO.insert(newSeller);
