@@ -46,5 +46,11 @@ public class MainTestes {
         sellerDAO.insert(newSeller);
         System.out.println("Inserted! New Id= "+newSeller.getId());
 
+        System.out.println("\n=== TEST 5: seller Update === ");
+
+        seller=sellerDAO.findById(1);
+        seller.setName("Martha Waine");
+        sellerDAO.update(seller);
+        System.out.println("Update Completed! ");
     }
 }

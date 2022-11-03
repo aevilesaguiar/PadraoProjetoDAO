@@ -121,8 +121,17 @@ SQL Query:
 ## insert implementation
 
 
+        SQL Query:
+        INSERT INTO seller
+        (Name, Email, BirthDate, BaseSalary, DepartmentId)
+        VALUES
+        (?, ?, ?, ?, ?)
+
+
+## update implementation (Atualização dos dados de um vendedor)
+
 SQL Query:
-INSERT INTO seller
-(Name, Email, BirthDate, BaseSalary, DepartmentId)
-VALUES
-(?, ?, ?, ?, ?)
+
+        UPDATE seller
+        SET Name = ?, Email = ?, BirthDate = ?, BaseSalary = ?, DepartmentId = ?
+        WHERE Id = ?
