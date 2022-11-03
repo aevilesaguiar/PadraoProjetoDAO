@@ -7,16 +7,13 @@ import model.entities.Seller;
 
 import java.util.Date;
 
-public class Main {
+public class MainFindById {
     public static void main(String[] args) {
-
-        Department obj = new Department(1, "Books");
-        System.out.println(obj);
-
-        Seller seller = new Seller(25,"João","joao@mail.com",new Date(),3200.00,obj );
 
         //Instanciando DAO - o meu programa não conehce a implementação, só a interface - é uma forma de fazer Injeção de dependencia sem explicitar a implementação
         SellerDAO sellerDAO = DaoFactory.createSellerDao();
+
+        Seller seller = sellerDAO.findById(4);
 
         System.out.println(seller);
 

@@ -56,3 +56,20 @@ da Oracle
 - Implements Serializable é para os nossos objetos serem transformados em sequencias de bytes. Em java se quisermos que nosso
 objeto seja gravado em arquivo, seja trafegado em rede temos que implementar o Serializable
 
+
+## findById implementation
+
+SQL Query:
+
+        SELECT seller.*,department.Name as DepName
+        FROM seller INNER JOIN department
+        ON seller.DepartmentId = department.Id
+        WHERE seller.Id = ?
+
+um objeto ResultSet é uma tabela de dados que representa um conjunto de resultados de banco de dados, que
+geralmente é gerado pela execução de uma instrução que consulta o banco de dados .
+resultSet é um objeto com linhas e colunas como mostra a imagem, só que estamos programando OO
+a nossa classe DAO é responsavel por pegar os dados do BD relacional e transformar oem objetos associados
+como mostra abaixo
+
+![](.README_images/a1431300.png)
